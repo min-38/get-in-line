@@ -11,4 +11,9 @@ public class BaseController implements ErrorController {
     public String root() {
         return "index";
     }
+
+    @GetMapping("/error")
+    public String error() {
+        return "error";
+    }
 }
