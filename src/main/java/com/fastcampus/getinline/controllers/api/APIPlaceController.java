@@ -13,7 +13,7 @@ public class APIPlaceController {
         return List.of("place1", "place2");
     }
 
-    @GetMapping("/places")
+    @PostMapping("/places")
     public Boolean createPlace() {
         return true;
     }
