@@ -26,7 +26,6 @@ public enum ErrorCode {
         return getMessage(e.getMessage());
     }
 
-
     public String getMessage(String message) {
         return Optional.ofNullable(message)
                 .filter(Predicate.not(String::isBlank))
@@ -38,7 +37,7 @@ public enum ErrorCode {
     }
 
     public boolean isServerSideError() {
-        return this.getErrorCategory() == ErrorCategory.CLIENT_SIDE;
+        return this.getErrorCategory() == ErrorCategory.SERVER_SIDE;
     }
 
     @Override
@@ -46,7 +45,7 @@ public enum ErrorCode {
         return String.format("%s (%d)", name(), this.getCode());
     }
 
-    public enum ErrorCategory() {
+    public enum ErrorCategory {
         NORMAL, CLIENT_SIDE, SERVER_SIDE
     }
 }
