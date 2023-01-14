@@ -1,10 +1,5 @@
 package com.fastcampus.getinline.controllers.api;
 
-import com.fastcampus.getinline.constants.ErrorCode;
-import com.fastcampus.getinline.dto.APIErrorResponse;
-import com.fastcampus.getinline.exception.GeneralException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
