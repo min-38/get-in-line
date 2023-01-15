@@ -1,21 +1,25 @@
 package com.fastcampus.getinline.controllers.api;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import com.fastcampus.getinline.dto.APIDataResponse;
+import com.fastcampus.getinline.dto.AdminRequest;
+import com.fastcampus.getinline.dto.LoginRequest;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/api")
 @RestController
 public class APIAuthController {
 
-    @GetMapping("/login")
-    public String signUp() {
-        return "done.";
+    @PostMapping("/sign-up")
+    public APIDataResponse<String> signUp(@RequestBody AdminRequest adminRequest) {
+        return APIDataResponse.empty();
     }
 
-    @GetMapping("/sign-up")
-    public String login() {
-        return "done.";
+    @PostMapping("/login")
+    public APIDataResponse<String> login(@RequestBody LoginRequest loginRequest) {
+        return APIDataResponse.empty();
     }
+
 }
