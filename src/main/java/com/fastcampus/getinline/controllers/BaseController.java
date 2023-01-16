@@ -1,5 +1,6 @@
 package com.fastcampus.getinline.controllers;
 
+import com.fastcampus.getinline.exception.GeneralException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -7,12 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BaseController {
 
     @GetMapping("/")
-    public String root() {
+    public String root() throws Exception {
         return "index";
-    }
-
-    @GetMapping("/error")
-    public String error() {
-        return "error";
     }
 }
