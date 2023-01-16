@@ -1,4 +1,4 @@
-package com.fastcampus.getinline.errors;
+package com.fastcampus.getinline.controllers.errors;
 
 import com.fastcampus.getinline.constants.ErrorCode;
 import com.fastcampus.getinline.exception.GeneralException;
