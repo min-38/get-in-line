@@ -79,7 +79,7 @@ public class AdminController {
                 LocalDateTime.of(2021, 1, 1, 16, 0, 0),
                 0,
                 24,
-                "마스크 꼭 착용하세요",
+                "마스크를 꼭 착용하세요",
                 LocalDateTime.now(),
                 LocalDateTime.now()
         ));
