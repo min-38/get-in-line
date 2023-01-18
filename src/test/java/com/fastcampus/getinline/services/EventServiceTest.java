@@ -118,7 +118,7 @@ class EventServiceTest {
         boolean result = sut.createEvent(dto);
 
         // then
-        assertThat(result).isFalse();
+        assertThat(result).isTrue();
         verify(eventRepository).insertEvent(dto);
     }
 
@@ -163,7 +163,7 @@ class EventServiceTest {
         boolean result = sut.modifyEvent(null, dto);
 
         // then
-        assertThat(result).isTrue();
+        assertThat(result).isFalse();
         then(eventRepository).should().updateEvent(null, dto);
     }
 

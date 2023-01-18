@@ -23,7 +23,13 @@ public class EventService {
             LocalDateTime eventStartDatetime,
             LocalDateTime eventEndDatetime
     ) {
-        return eventRepository.findEvents(placeId, eventName, eventStatus, eventStartDatetime, eventEndDatetime);
+        return eventRepository.findEvents(
+                placeId,
+                eventName,
+                eventStatus,
+                eventStartDatetime,
+                eventEndDatetime
+        );
     }
 
     public Optional<EventDTO> getEvent(Long eventId) {
@@ -34,8 +40,8 @@ public class EventService {
         return eventRepository.insertEvent(eventDTO);
     }
 
-    public boolean modifyEvent(Long eventId, EventDTO eventDTO) {
-        return eventRepository.updateEvent(eventId, eventDTO);
+    public boolean modifyEvent(Long eventId, EventDTO dto) {
+        return eventRepository.updateEvent(eventId, dto);
     }
 
     public boolean removeEvent(Long eventId) {

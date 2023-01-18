@@ -65,7 +65,7 @@ public class AdminController {
         map.put("eventStartDatetime", eventStartDatetime);
         map.put("eventEndDatetime", eventEndDatetime);
 
-        return new ModelAndView("admin/events", map);
+        return new ModelAndView("Admin/events", map);
     }
 
     @GetMapping("/events/{eventId}")
