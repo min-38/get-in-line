@@ -1,9 +1,10 @@
 package com.fastcampus.getinline.services;
 
 import com.fastcampus.getinline.Repositories.EventRepository;
+import com.fastcampus.getinline.constants.ErrorCode;
 import com.fastcampus.getinline.constants.EventStatus;
 import com.fastcampus.getinline.dto.EventDTO;
-import org.junit.jupiter.api.BeforeEach;
+import com.fastcampus.getinline.exception.GeneralException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +17,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.verify;
@@ -74,6 +77,23 @@ class EventServiceTest {
                     assertThat(event.eventStartDatetime()).isBeforeOrEqualTo(eventStartDateTime);
                 });
         then(eventRepository).should().findEvents(placeId, eventName, eventStatus, eventStartDateTime, eventEndDateTime);
+    }
+
+    @DisplayName("이벤트를 검색하는데 에러가 발생한 경우, 줄서기 프로젝트 기본 에러로 전환하여 예외 던진다")
+    @Test
+    void givenDataRelatedException_whenSearchingEvents_thenThrowsGeneralException() {
+        // given
+        RuntimeException e = new RuntimeException("This is test.");
+        given(eventRepository.findEvents(any(), any(), any(), any(), any())).willThrow(e);
+
+        // when
+        Throwable thrown = catchThrowable(() -> sut.getEvents(null, null, null, null, null));
+
+        // then
+        assertThat(thrown)
+                .isInstanceOf(GeneralException.class)
+                .hasMessageContaining(ErrorCode.DATA_ACCESS_ERROR.getMessage());
+        then(eventRepository).should().findEvents(null, null, null, null, null);
     }
 
     @DisplayName("이벤트 ID로 존재하는 이벤트를 조회하면, 해당 이벤트 정보를 출력하여 보여준다.")

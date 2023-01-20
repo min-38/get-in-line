@@ -1,8 +1,10 @@
 package com.fastcampus.getinline.services;
 
 import com.fastcampus.getinline.Repositories.EventRepository;
+import com.fastcampus.getinline.constants.ErrorCode;
 import com.fastcampus.getinline.constants.EventStatus;
 import com.fastcampus.getinline.dto.EventDTO;
+import com.fastcampus.getinline.exception.GeneralException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,13 +25,19 @@ public class EventService {
             LocalDateTime eventStartDatetime,
             LocalDateTime eventEndDatetime
     ) {
-        return eventRepository.findEvents(
-                placeId,
-                eventName,
-                eventStatus,
-                eventStartDatetime,
-                eventEndDatetime
-        );
+        try {
+            return eventRepository.findEvents(
+                    placeId,
+                    eventName,
+                    eventStatus,
+                    eventStartDatetime,
+                    eventEndDatetime
+            );
+        }
+        catch(Exception e) {
+            throw new GeneralException(ErrorCode.DATA_ACCESS_ERROR);
+        }
+
     }
 
     public Optional<EventDTO> getEvent(Long eventId) {
