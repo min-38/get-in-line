@@ -29,13 +29,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
                 HttpStatus.BAD_REQUEST :
                 HttpStatus.INTERNAL_SERVER_ERROR;
 
-        return super.handleExceptionInternal(
-                e,
-                errorCode,
-                HttpHeaders.EMPTY,
-                status,
-                request
-        );
+        return handleExceptionInternal(e, errorCode, HttpHeaders.EMPTY, status, request);
     }
 
     @ExceptionHandler
@@ -52,6 +46,7 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, errorCode, headers, status, request);
     }
 
+
     private ResponseEntity<Object> handleExceptionInternal(Exception e, ErrorCode errorCode, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return super.handleExceptionInternal(
                 e,
@@ -61,4 +56,5 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
                 request
         );
     }
+
 }
