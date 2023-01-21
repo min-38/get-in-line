@@ -29,7 +29,9 @@ class EventControllerTest {
             get("/events"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("Event/index"));
+                .andExpect(view().name("Event/index"))
+                .andExpect(model().hasNoErrors())
+                .andExpect(model().attributeExists("events"));
     }
 
     @DisplayName("[view][GET] 이벤트 세부 정보 페이지")
@@ -43,7 +45,9 @@ class EventControllerTest {
             get("/events/" + eventId))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
-                .andExpect(view().name("Event/detail"));
+                .andExpect(view().name("Event/detail"))
+                .andExpect(model().hasNoErrors())
+                .andExpect(model().attributeExists("event"));
     }
 
 }
