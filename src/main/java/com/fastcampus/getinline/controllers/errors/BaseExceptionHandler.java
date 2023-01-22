@@ -15,14 +15,16 @@ public class BaseExceptionHandler {
     @ExceptionHandler
     public ModelAndView general(GeneralException e) {
         ErrorCode errorCode = e.getErrorCode();
-        HttpStatus status = errorCode.isClientSideError() ? HttpStatus.BAD_REQUEST : HttpStatus.INTERNAL_SERVER_ERROR;
+        HttpStatus status = errorCode.isClientSideError() ?
+                HttpStatus.BAD_REQUEST :
+                HttpStatus.INTERNAL_SERVER_ERROR;
 
         return new ModelAndView(
                 "error",
                 Map.of(
                         "statusCode", status.value(),
                         "errorCode", errorCode,
-                        "message", errorCode.getMessage(e)
+                        "message", errorCode.getMessage()
                 ),
                 status
         );
@@ -43,4 +45,5 @@ public class BaseExceptionHandler {
                 status
         );
     }
+
 }
